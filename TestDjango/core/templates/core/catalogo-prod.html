@@ -1,0 +1,67 @@
+{% extends "core/plantilla.html" %}
+{% load static %}
+
+{% block contenido %}
+        <div id="navbar">
+            <nav class="navbar">
+                <div class="container-fluid" style="display: flex; justify-content: center;">
+                    <form class="d-flex">
+                        <input class="form-control me-2" type="search" placeholder="Busca aquí" aria-label="Search">
+                        <button class="btn btn-warning" type="submit">Buscar</button>
+                    </form>
+                </div>
+            </nav>
+            {% if user.is_staff %}
+            <div id="botones-crud">
+                <button type="button" class="btn btn-outline-warning"><a href="{% url 'Crud-prom' %}">Gestionar
+                        promoción</a></button>
+                <button type="button" class="btn btn-outline-warning"><a href="{% url 'Crud-prod1' %}">Gestionar
+                        productos</a></button>
+            </div>
+            {% endif %}
+        </div>
+
+        <div class="subtitulo">
+            <h1><b>Catalogo de Productos</b></h1>
+            <h5>Descubre nuestra variedad de productos que nuestra tienda de mascotas tiene para ofrecerte, con sus
+                increibles OFERTAS Y COMBO BOX!!!!</h5>
+        </div>
+        <div class="botonPromo" style="margin-left: 75px;">
+
+            <a class="btn btn-success" href="{% url 'catalogo-promo' %}" role="button" style="margin-right: 100px;">Promociones!!</a>
+        </div>
+        <div id="boton-filtro">
+            <b>Filtrar por:</b>
+                <select name="filtro" id="filtro" class="form-select">
+                    <option value="1">Comida</option>
+                    <option value="2">Juguetes</option>
+                    <option value="3">Accesorios</option>
+                    <option value="4">Todo</option>
+                </select>
+        </div>
+        
+        <div id="catalogo-prod">
+            {% for prodi in prod %}
+            <div class="card" style="width: 20rem;">
+                {% if prodi.imagen %}
+                        <img src="{{ prodi.imagen.url | default:'#' }}" alt="{{ prodi.nombre }}">
+                        {% else %}
+                        <img src="{% static 'core/imagenes/nohayimagen.jpg' %}" alt="{{ prodi.nombre }}">
+                        {% endif %}
+                
+                <div class="card-body">
+                    <h5 class="card-title">{{ prodi.nombre }}</h5>
+                    <p class="card-text">{{ prodi.descripcion }}</p>
+                    <h5 class="card-text">$ {{ prodi.precio }}</h5>
+                    <p><b>stock: {{ prodi.stock }} productos</b></p>
+                    {% if user.is_authenticated%}
+                    <a href="{% url 'addcart' prodi.id %}" class="btn btn-primary" style="display: flex; justify-content: center; margin-bottom: 20px;">Añadir a
+                        Carrito</a>
+                        {% endif %}
+                        <a href="{% url 'detalleProducto' prodi.id %}" class="btn btn-primary" style="display: flex; justify-content: center;">ver mas</a>
+                </div>
+            </div>
+            {% endfor %}
+
+        </div>
+        {% endblock  %}

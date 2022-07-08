@@ -1,0 +1,139 @@
+{% extends "core/plantilla.html" %}
+{% load static %}
+{% block contenido %}
+        <div id="navbar">
+            <nav class="navbar">
+                <div class="container-fluid" style="display: flex; justify-content: center;">
+                    <form class="d-flex">
+                        <input class="form-control me-2" type="search" placeholder="Busca aquí" aria-label="Search">
+                        <button class="btn btn-btn-light" type="submit">Buscar</button>
+                    </form>
+                </div>
+                
+            </nav>
+        </div>
+        <div class="subtitulo">
+            <h1 class="sub"><b>
+                    Subscripciones</h1></b>
+            <h5 class="sub">El apartado de subscripciones es una seccion de nuestra empresa donde al estar suscrito a
+                alguno de nuestros servicios, contaras con
+                beneficios exclusivos de nuestra empresa, desde desceuntos y promociones, hasta envio gratis y regalos
+                de parte de nuestra empresa
+                hacia ustedes.
+            </h5>
+            <H2 class="sub">!QUE ESPERAS, COMPRA EL TUYO YA¡</H2>
+        </div>
+
+        <div id="catalogo-prod">
+            <div class="card" style="width: 18rem;">
+                <img src="{% static 'core/Imagenes/logoperrito.png' %}" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h2 class="card-title">1 MES</h2>
+                    <p class="card-text">Obtendrás beneficios exclusivos. Tales como promociones, descuentos, entre
+                        otras cosas. Solo por un mes
+                        .</p>
+                    <p>Beneficios:</p>
+                    <ul>
+                        <li>✅ Promociones</li>
+                        <li>✅ Descuentos exclusivos</li>
+                        <li>❌ Envio gratis</li>
+                        <li>❌ Regalos adicionales</li>
+                    </ul>
+                    <br>
+                    <h2>$10.990</h2>
+
+                </div>
+            </div>
+            <div class="card" style="width: 18rem;">
+                <img src="{% static 'core/Imagenes/subs22.png' %}" class="card-img-top" alt="..." style="margin-bottom: 40px;">
+                <div class="card-body">
+                    <h2 class="card-title">6 MESES</h2>
+                    <p class="card-text">Obtendrás beneficios exclusivos mas que con la susbcripcion de un mes, como
+                        dewceunto solo para subscriptores o accesrotios solo que ustedes pueden acceder</p>
+                    <p>Beneficios:</p>
+                    <ul>
+                        <li>✅ Promociones</li>
+                        <li>✅ Descuentos exclusivos</li>
+                        <li>✅ Envio gratis</li>
+                        <li>❌ Regalos adicionales</li>
+                    </ul>
+                    <br>
+                    <h2>$20.990</h2>
+
+                </div>
+            </div>
+            <div class="card" style="width: 18rem;">
+                <img src="{% static 'core/Imagenes/Paw-patrol.png' %}" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h2 class="card-title">1 AÑO</h2>
+                    <p class="card-text">Te volveras miembro premium de Pet Shop Paws, con esto queremos decir que
+                        obtendras muchas cosas exclusivas </p>
+                    <p>Beneficios:</p>
+                    <ul>
+                        <li>✅ Promociones</li>
+                        <li>✅ Descuentos exclusivos</li>
+                        <li>✅ Envio gratis</li>
+                        <li>✅ Regalos adicionales</li>
+                    </ul>
+                    <br>
+                    <h2>$40.990</h2>
+
+                </div>
+            </div>
+        </div>
+        <div class="boton-subs">
+        <!-- Button trigger modal -->
+        <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#subscripcion">
+            Subscribirse
+        </button>
+        
+        <!-- Modal -->
+        <div class="modal fade" id="subscripcion" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+            aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <section id="modal-subs">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="staticBackdropLabel">Elegir plan</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <img src="{% static 'core/imagenes/catpaw.png' %}" alt="a">
+                        <select class="form-select" aria-label="Default select example">
+                            <option selected>Escoge tu plan</option>
+                            <option value="1">1 Mes</option>
+                            <option value="2">6 Meses</option>
+                            <option value="3">1 Año</option>
+                          </select>
+                          <img src="{%static 'core/imagenes/credito.png'%}" alt="">
+                          <br>
+                          <select class="form-select" aria-label="Default select example">
+                            <option selected>Escoja su metodo de pago</option>
+                            <option value="1">Debito</option>
+                            <option value="2">Credito</option>
+                          </select>
+                          <br>
+                          <img src="{% static 'core/imagenes/banco.png' %}" alt="">
+                          <select class="form-select" aria-label="Default select example">
+                            <option selected>Escoja el banco</option>
+                            <option value="1">Banco estado</option>
+                            <option value="2">Santander</option>
+                            <option value="2">Banco falabella</option>
+                            <option value="2">BCI</option>
+                            
+                          </select>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                        <button type="button" class="btn btn-primary">Ir a pagar</button>
+                    </div>
+                </section>
+                </div>
+            </div>
+        
+        </div>
+    
+    </div>
+
+
+       {% endblock %}

@@ -1,0 +1,66 @@
+{% extends "core/plantilla.html" %}
+{% load static %}
+{% block contenido %}
+        <div id="navbar">
+            <nav class="navbar">
+                <div class="container-fluid" style="display: flex; justify-content: center;">
+                    <form class="d-flex">
+                        <input class="form-control me-2" type="search" placeholder="Busca aquí" aria-label="Search">
+                        <button class="btn btn-btn-light" type="submit">Buscar</button>
+                    </form>
+                    
+                </div>
+            </nav>
+            <div id="botones-crud">
+                <button type="button" class="btn btn-outline-warning"><a href="{% url 'Crud-prom' %}">Gestionar
+                        promoción</a></button>
+                <button type="button" class="btn btn-outline-warning"><a href="{% url 'Crud-prod1' %}">Gestionar
+                        productos</a></button>
+            </div>
+        </div>
+        <div class="subtitulo">
+            <h1><b>Gestion de promociones</b></h1>
+        </div>
+        <div id="crud-prom">
+            <a class="btn btn-success" href="{% url 'crearPromo' %}" role="button">Crear</a>
+
+            
+
+
+                  
+                
+                <div id="emailHelp" class="form-text"></div>
+                <div class="table-responsive">
+                <table class="table table-bordered border-warning border border-4">
+                    <thead>
+                        <tr class="text-center">
+                            <th>ID PROMOCION</th>             
+                            <th>NOMBRE</th>
+                            <th>DESCUENTO</th>
+                            <th>PRECIO FINAL</th>
+                            <th>ID PRODUCTO</th>
+                            <th>ELIMINAR</th>
+                            
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for promo in prom %}
+                        <tr class="text-center">
+                            <th>{{ promo.idPromocion }}</th>
+                            <th>{{ promo.nombrepro }}</th>
+                            <th>{{ promo.porcDesceunto }}</th>
+                            <td>{{ promo.precioFinal}}</td>
+                            <th>{{ promo.idProducto }}</th>
+                            <th><button id="btn2" type="submit" class="btn btn-danger"><a
+                                href="{% url 'eliminarPromo' promo.idPromocion %}"
+                                style="text-decoration: none; color: aliceblue;">Borrar</a> </button>
+                        <button id="btn2" type="submit" class="btn btn-success"><a
+                                href="{% url 'editarPromo' promo.idPromocion %}"
+                                style="text-decoration: none; color: aliceblue;">Actualizar</a> </button>
+                    </th>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            </div>
+            {% endblock %}

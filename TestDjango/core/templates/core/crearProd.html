@@ -1,0 +1,46 @@
+{% extends "core/plantilla.html" %}
+{% load static %}
+
+{% block contenido %}
+<div id="navbar">
+    <nav class="navbar">
+        <div class="container-fluid" style="display: flex; justify-content: space-around;">
+            <form class="d-flex">
+                <input class="form-control me-2" type="search" placeholder="Busca aquí" aria-label="Search">
+                <button class="btn btn-btn-light" type="submit">Buscar</button>
+            </form>
+        </div>
+    </nav>
+    <div id="botones-crud">
+        <button type="button" class="btn btn-outline-warning"><a href="{% url 'Crud-prom' %}">Gestionar
+                promoción</a></button>
+        <button type="button" class="btn btn-outline-warning"><a href="{% url 'Crud-prod' %}">Gestionar
+                productos</a></button>
+    </div>
+</div>
+
+<section class="Register" style="margin-bottom: 100px; width: 60%;">
+    <h2>Crear producto</h2>
+    <form action="" class="formCrudProd" id="formCrudProd" method="post"  enctype="multipart/form-data">
+        {% csrf_token %}
+        <!-- Grupo: id -->
+        {% for form in formulario %}
+        <div class="formulario-grupo" id="grupo-id-prod">
+            <label for="{{form.name}}" class="formulario-label">{{form.name}}</label>
+            <div class="formulario-grupo-input">
+                <input type="{{ form.field.widget.input_type}}" class="formulario-input" name="{{form.name}}" id="{{form.name}}"
+                    placeholder="{{form.name}}" style="height: 57px;">
+                
+            </div>
+            <p class="formulario-input-error">{{form.errors}}</p>
+        </div>
+        {% endfor %}
+        <div class="botones-soli">
+            
+            <button type="reset" class="botonProd">limpiar</button>
+            <button type="submit" class="botonProd">Enviar</button>
+        </div>
+    </form>
+</section>
+
+{% endblock %}

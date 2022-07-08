@@ -1,0 +1,73 @@
+{% extends "core/plantilla.html" %}
+{% load static %}
+{% block contenido %}
+<!--aqui termian el #header-->
+<div id="navbar">
+    <nav class="navbar">
+        <div class="container-fluid" style="display: flex; justify-content: space-around;">
+            <form class="d-flex">
+                <input class="form-control me-2" type="search" placeholder="Busca aquí" aria-label="Search">
+                <button class="btn btn-btn-light" type="submit">Buscar</button>
+            </form>
+        </div>
+    </nav>
+    <div id="botones-crud">
+        <button type="button" class="btn btn-outline-warning"><a href="{% url 'Crud-prom' %}">Gestionar
+                promoción</a></button>
+        <button type="button" class="btn btn-outline-warning"><a href="{% url 'Crud-prod' %}">Gestionar
+                productos</a></button>
+    </div>
+</div>
+<div class="subtitulo">
+    <h1><b>Gestion de Productos</b></h1>
+</div>
+<div id="crud-prom">
+    <a class="btn btn-success" href="{% url 'crearProd' %}" role="button">Crear</a>
+
+    <div id="emailHelp" class="form-text"></div>
+    <div class="table-responsive">
+        <table class="table table-bordered border-warning border border-4 ">
+            <thead>
+                <tr class="text-center">
+                    <th>ID PRODUCTO</th>
+                    <th>MARCA</th>
+                    <th>NOMBRE PRODUCTO</th>
+                    <th>DESCRIPCION</th>
+                    <th>STOCK</th>
+                    <th>PRECIO</th>
+                    <th>imagen</th>
+                    <th>ELIMINAR</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                {% for prodi in prod %}
+                <tr class="text-center">
+                    <th>{{ prodi.idProducto }}</th>
+                    <th>{{ prodi.marca }}</th>
+                    <th>{{ prodi.nombre }}</th>
+                    <td>{{ prodi.descripcion }}</td>
+                    <th>{{ prodi.stock }}</th>
+                    <th>$ {{ prodi.precio }}</th>
+                    <th>
+                        {% if prodi.imagen %}
+                        <img src="{{ prodi.imagen.url | default:'#' }}" alt="{{ prodi.nombre }}" style="width: 100px;">
+                        {% else %}
+                        <h1>no hay imagen</h1>
+                        {% endif %}
+                    </th>
+                        <th><button id="btn2" type="submit" class="btn btn-danger"><a
+                                href="{% url 'eliminarProd' prodi.idProducto %}"
+                                style="text-decoration: none; color: aliceblue;">Borrar</a> </button>
+                        <button id="btn2" type="submit" class="btn btn-success"><a
+                                href="{% url 'editarProd' prodi.idProducto %}"
+                                style="text-decoration: none; color: aliceblue;">Actualizar</a> </button>
+                    </th>
+                </tr>
+                {% endfor %}
+            </tbody>
+
+        </table>
+    </div>
+</div>
+{% endblock %}

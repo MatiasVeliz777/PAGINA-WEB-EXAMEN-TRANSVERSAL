@@ -1,0 +1,47 @@
+{% extends "core/plantilla.html" %}
+{% load static %}
+
+{% block contenido %}
+        <div id="navbar">
+            <nav class="navbar">
+                <div class="container-fluid" style="display: flex; justify-content: center;">
+                    <form class="d-flex">
+                        <input class="form-control me-2" type="search" placeholder="Busca aquí" aria-label="Search">
+                        <button class="btn btn-warning" type="submit">Buscar</button>
+                    </form>
+                </div>
+            </nav>
+            {% if user.is_staff %}
+            <div id="botones-crud">
+                <button type="button" class="btn btn-outline-warning"><a href="{% url 'Crud-prom' %}">Gestionar
+                        promoción</a></button>
+                <button type="button" class="btn btn-outline-warning"><a href="{% url 'Crud-prod1' %}">Gestionar
+                        productos</a></button>
+            </div>
+            {% endif %}
+        </div>
+
+        <div class="subtitulo">
+            <h1><b>Catalogo de Promocion</b></h1>
+            <h5>Descubre nuestra variedad de productos que nuestra tienda de mascotas tiene para ofrecerte, con sus
+                increibles OFERTAS Y COMBO BOX!!!!</h5>
+        </div>
+        
+        
+        <div id="catalogo-prod">
+            {% for prodi in prod %}
+            <div class="card" style="width: 20rem;">
+                <img src="{% static 'core/imagenes/signodollar.jpg' %}" alt="promocion">
+                <div class="card-body">
+                    <h5 class="card-title">{{ prodi.nombrepro }}</h5>
+                    <h5 class="card-title">Producto {{ prodi.idProducto }}</h5>
+                    <p class="card-text"> porcentaje: {{ prodi.porcDesceunto }}%</p>
+                    <h5 class="card-text">total: ${{ prodi.precioFinal }}</h5>
+                    
+                    
+                </div>
+            </div>
+            {% endfor %}
+
+        </div>
+        {% endblock  %}

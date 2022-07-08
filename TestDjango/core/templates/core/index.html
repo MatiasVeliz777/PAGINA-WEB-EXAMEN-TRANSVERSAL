@@ -1,0 +1,130 @@
+{% extends "core/plantilla.html" %}
+{% load static %}
+
+{% block contenido %}
+        <!--aqui termian el #header-->
+        <div id="navbar">
+            <nav class="navbar">
+                <div class="container-fluid" style="display: flex; justify-content: center;">
+                    <form class="d-flex">
+                        <input class="form-control me-2" type="search" placeholder="Busca aquí" aria-label="Search">
+                        <button class="btn btn-warning" type="submit">Buscar</button>
+                    </form>
+                </div>
+            </nav>
+            <div class="boton-menu">
+                <button type="submit" class="btn btn-outline-warning">
+                    <a href="#redes">Siguenos o contactanos</a>
+                </button>
+            </div>
+        </div>
+
+        <div class="subtitulo">
+            <h1><b>Explora nuestra variedad de productos</b></h1>
+        </div>
+
+        <div id="carrusel" style="
+        background-image: linear-gradient(0deg, rgba(0, 0, 0, 0),
+        rgba(0,0,0,0.0)),
+        url(static/core/imagenes/fondo3.png);
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center center;">
+            <div style="display: flex; justify-content: center;">
+                <div style="width: 60%;">
+                    <div id="carrusel">
+                        <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
+                            <div class="carousel-indicators">
+                                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0"
+                                    class="active" aria-current="true" aria-label="Slide 1"></button>
+                                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1"
+                                    aria-label="Slide 2"></button>
+                                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2"
+                                    aria-label="Slide 3"></button>
+                                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="3"
+                                    aria-label="Slide 4"></button>
+                            </div>
+                            <div class="carousel-inner">
+                                <div class="carousel-item active">
+                                    <a href="#"><img src="{% static 'core/imagenes/collar1.png' %}" class="d-block w-100" alt="..."></a>
+                                    <div class="carousel-caption d-none d-md-block" id="carrusel-text">
+                                        <h1>IMPERDIBLE!! DESCUENTO DEL 20% EN NUESTRAS COLLARES!!</h1>
+                                        <p>Increibles ofertas en nuestros productos collares,aprovehca y no te quedes
+                                            sin el tuyo</p>
+                                    </div>
+                                </div>
+                                <div class="carousel-item">
+                                    <a href="#"><img src="{% static 'core/imagenes/bandana1.png' %}" class="d-block w-100" alt="..."></a>
+                                    <div class="carousel-caption d-none d-md-block">
+                                        <h1>2 x 1!!! COLLARES PARA PERRO DE MUCHA VARIEDAD </h1>
+                                        <p> Collares para perros con aromatizante a lavanda en variedad de colores</p>
+                                    </div>
+                                </div>
+                                <div class="carousel-item">
+                                    <a href="#"><img src="{% static 'core/imagenes/bandana2.png' %}" class="d-block w-100" alt="..."></a>
+                                    <div class="carousel-caption d-none d-md-block">
+                                        <h1>BANDANAS PARA PERRITO CON DISEÑOS!!!1</h1>
+                                        <p>Bandanas para cuello de perro de mucha variedad y con muchos diseños
+                                            distintos!</p>
+                                    </div>
+                                </div>
+                                <div class="carousel-item">
+                                    <a href="#"><img src="{% static 'core/imagenes/correa1.png' %}" class="d-block w-100" alt="..."></a>
+                                    <div class="carousel-caption d-none d-md-block">
+                                        <h1>CORREA EXTENDIBLE PARA ANIMALES DOMESTICOS EN PRECIO OFERTA!!!!
+                                        </h1>
+                                        <p>Llevate esta correa extendible para tus animales a un precio muy accesible
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <button class="carousel-control-prev" type="button"
+                                data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Previous</span>
+                            </button>
+                            <button class="carousel-control-next" type="button"
+                                data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Next</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="subtitulo">
+            <h1><b>Nuestros Productos</b></h1>
+        </div>
+        <div id="contenido">
+            <div id="catalogo-prod">
+                {% for prodi in prod %}
+                <div class="card" style="width: 20rem;">
+                    {% if prodi.imagen %}
+                            <img src="{{ prodi.imagen.url | default:'#' }}" alt="{{ prodi.nombre }}">
+                            {% else %}
+                            <img src="{% static 'core/imagenes/nohayimagen.jpg' %}" alt="{{ prodi.nombre }}">
+                            {% endif %}
+                    
+                    <div class="card-body">
+                        <h5 class="card-title">{{ prodi.nombre }}</h5>
+                        <p class="card-text">{{ prodi.descripcion }}</p>
+                        <h5 class="card-text">$ {{ prodi.precio }}</h5>
+                        <p><b>stock: {{ prodi.stock }} productos</b></p>
+                        <a href="{% url 'detalleProducto' prodi.id %}" class="btn btn-primary" style="display: flex; justify-content: center;">ver mas</a>
+                    </div>
+                </div>
+                {% endfor %}
+    
+            </div>
+    
+            
+            
+            
+        </div>
+        <div id="agregar-mas">
+            <a href="{% url 'catalogo-prod' %}" class="btn btn-primary"
+                style="display: flex; justify-content: center; align-items: center; margin-left: 30%;  margin-right: 30%;">
+                Ver mas</a>
+        </div>
+        {% endblock %}
